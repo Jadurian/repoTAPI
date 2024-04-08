@@ -39,7 +39,6 @@ def ultimo_dia_sql():
     cursor.close()
 
     ultimo_dia = df['FECHA'][0].isoformat()
-    print(ultimo_dia)
+
     return ultimo_dia
 
-ultimo_dia_sql()
