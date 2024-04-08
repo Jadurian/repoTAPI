@@ -10,4 +10,3 @@ def  ultimo_dia_CAMM():
     #print(fecha)
     return fecha
 
-print(ultimo_dia_CAMM())

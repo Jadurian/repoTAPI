@@ -1,13 +1,16 @@
-import os
-import pandas as pd
-import zipfile
-import pyodbc
-import requests
-import io
-from datetime import datetime, timedelta
+import TAPI
 
+#TODO: este script será el main.py que se ejecutará a diario
+    # 1_se conectará a la BBDD donde se alojen los históricos
+    # 2_capturará la última fecha de carga en la tabla (ultimo_dia_sql.py) la cual será el input FECHA_DESDE
+    # 3_se conectará a la API de CAMMESA
+    # 4_capturará la última fecha de carga en los documentos de CAMMESA (ultimodocumento.py) la cual será el input FECHA_HASTA
+    # 5_procesará la información e insertará los datos en la BBDD 
 
-from TAPI import chkconn
+# 1 Conectar a la BBDD para chequear última fecha subida
 
-print(chkconn)
+#from TAPI import ultimo_dia_sql
+
+fecha_bd = TAPI.ultimo_dia_bd().date
+
 
