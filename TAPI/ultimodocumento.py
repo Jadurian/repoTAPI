@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 
 #Con este script se puede obtener la fecha del último documento cargado por CAMMESA
 def  ultimo_dia_CAMM():
@@ -7,6 +8,7 @@ def  ultimo_dia_CAMM():
 
     #fecha = str(ultimafecha.text[10:-2])
     fecha = ultimafecha.text[10:-2]
-    #print(fecha)
+    fecha = fecha
     return fecha
 
+ultimo_dia_CAMM()

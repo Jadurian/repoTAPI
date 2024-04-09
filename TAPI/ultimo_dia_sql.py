@@ -1,14 +1,9 @@
 #codigo para capturar el último día cargado en la BBDD
 
-import os
 import pandas as pd
-import zipfile
 import pyodbc
-import requests
-import io
 from datetime import datetime, timedelta
-from sqlalchemy import engine
-import warnings
+
 
 def ultimo_dia_bd():
     server = 'DARCCVWSQL19'
@@ -38,11 +33,6 @@ def ultimo_dia_bd():
     
     #ultimo_dia_siguiente = ultimo_dia.fromisoformat(ultimo_dia) + timedelta(days=1)
 
-    a = datetime.fromisoformat(ultimo_dia)
-    print(type(a))
-
-    #TODO: SEGUIR ACÁ, AGREGARLE UN DÍA Y QUE RETORNE ESE DÍA PARA QUE SEA EL DÍA QUE ARRANCARÁ LA ITERACIÓN
-
     return ultimo_dia
 
-ultimo_dia_bd()
+

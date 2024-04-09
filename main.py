@@ -1,4 +1,5 @@
 import TAPI
+from datetime import datetime, date, timedelta
 
 #TODO: este script será el main.py que se ejecutará a diario
     # 1_se conectará a la BBDD donde se alojen los históricos
@@ -11,6 +12,15 @@ import TAPI
 
 #from TAPI import ultimo_dia_sql
 
-fecha_bd = TAPI.ultimo_dia_bd().date
+fecha_bd = TAPI.ultimo_dia_bd()
 
+a = datetime.fromisoformat(fecha_bd)
+
+fecha_desde = a + timedelta(days=1)
+
+fecha_desde = fecha_desde.isoformat()
+
+fecha_hasta = TAPI.ultimo_dia_CAMM()
+
+print(fecha_hasta)
 
