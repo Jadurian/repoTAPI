@@ -29,10 +29,15 @@ def ultimo_dia_bd():
     # Cerrar el cursor
     cursor.close()
 
-    ultimo_dia = df['FECHA'][0].isoformat()
+    ultimo_dia = df['FECHA'][0]
+
+    # print(type(ultimo_dia))
+
+    # ultimo_dia_dt = datetime.strptime(ultimo_dia, ) 
     
     #ultimo_dia_siguiente = ultimo_dia.fromisoformat(ultimo_dia) + timedelta(days=1)
 
     return ultimo_dia
 
+# print(ultimo_dia_bd())
 
