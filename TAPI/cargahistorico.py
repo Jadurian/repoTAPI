@@ -7,7 +7,7 @@ import io
 from datetime import datetime, timedelta
 import sqlalchemy
 import urllib
-from TAPI import capturar_fecha
+#from TAPI import capturar_fecha
 
 def iterar_entre_fechas(fecha_desde, fecha_hasta):
     fecha_actual = datetime.strptime(fecha_desde, "%Y-%m-%dT%H:%M:%S.%f%z")
@@ -23,8 +23,11 @@ def iterar_entre_fechas(fecha_desde, fecha_hasta):
 server = 'DARCCVWSQL19'
 database = 'TAPI'
 tabla = 'DiarioTest'
-fecha_desde = "2024-03-01T00:00:00.000-03:00"
-fecha_hasta = "2024-03-31T23:59:59.000-03:00"
+
+fecha_desde = "2024-04-01T00:00:00.000-03:00"
+fecha_hasta = "2024-04-24T23:59:59.000-03:00"
+
+
 NEMO = "PARTE_POST_OPERATIVO_UNIF"
 URL = f"https://api.cammesa.com/pub-svc/public/"
 method_id = "findDocumentosByNemoRango?" 
