@@ -10,8 +10,6 @@ def  ultimo_dia_CAMM():
     
     fecha = ultimafecha.text[10:-2]
 
-    print(ultimafecha.text)
+    #print(ultimafecha.text)
 
     return fecha
-
-ultimo_dia_CAMM()
