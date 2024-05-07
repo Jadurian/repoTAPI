@@ -13,3 +13,5 @@ def  ultimo_dia_CAMM():
     #print(ultimafecha.text)
 
     return fecha
+
+print(ultimo_dia_CAMM())

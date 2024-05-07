@@ -24,8 +24,8 @@ server = 'DARCCVWSQL19'
 database = 'TAPI'
 tabla = 'DiarioTest'
 
-fecha_desde = "2024-04-01T00:00:00.000-03:00"
-fecha_hasta = "2024-04-24T23:59:59.000-03:00"
+fecha_desde = "2023-01-01T00:00:00.000-03:00"
+fecha_hasta = "2024-05-05T23:59:59.000-03:00"
 
 
 NEMO = "PARTE_POST_OPERATIVO_UNIF"
