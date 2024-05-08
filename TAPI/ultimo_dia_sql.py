@@ -2,7 +2,7 @@
 
 import pandas as pd
 import pyodbc
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 
 def ultimo_dia_bd():
@@ -31,11 +31,16 @@ def ultimo_dia_bd():
 
     ultimo_dia = df['FECHA'][0]
 
-    # print(type(ultimo_dia))
+    # # Convertir la cadena a un objeto datetime
+    # fecha_dt = datetime.strptime(ultimo_dia, "%Y-%m-%d")
 
-    # ultimo_dia_dt = datetime.strptime(ultimo_dia, ) 
+    # # Crear un objeto de zona horaria fija (-03:00)
+    # zona_horaria = timezone(timedelta(hours=-3))
+
+    # # Agregar la zona horaria al objeto datetime
+    # fecha_dt = fecha_dt.replace(tzinfo=zona_horaria)
+
+    # # Formatear el datetime como una cadena con el método isoformat()
+    # fecha_formateada = fecha_dt.isoformat()
     
-    #ultimo_dia_siguiente = ultimo_dia.fromisoformat(ultimo_dia) + timedelta(days=1)
-
     return ultimo_dia
-
