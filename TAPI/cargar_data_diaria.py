@@ -54,6 +54,8 @@ def ultimo_dia_bd(): #captura la fecha del último registro cargado en la BD
 
     return ultimo_dia
 
+# Ejecucion de codigo
+
 server = 'DARCCVWSQL19'
 database = 'TAPI'
 
