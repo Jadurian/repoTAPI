@@ -62,13 +62,13 @@ database = 'TAPI'
 tabla_valores = 'Valores_Gen_Diario_Automatico'
 tabla_contratos = 'Contratos_Diario_Automatico'
 
-fecha_desde_bd = ultimo_dia_bd() 
-fecha_datetime = datetime.strptime(fecha_desde_bd, "%Y-%m-%d")
+fecha_desde_bd = ultimo_dia_bd() #Ultimo dia BD sql
+fecha_datetime = datetime.strptime(fecha_desde_bd, "%Y-%m-%d") #transforma el str a objeto datetime
 
-fecha_siguiente = fecha_datetime + timedelta(days=1)
+fecha_siguiente = fecha_datetime + timedelta(days=1) #le suma un día siguiente
 
-fecha_desde = fecha_siguiente.strftime("%Y-%m-%d")
-fecha_hasta = ultimo_dia_CAMM()
+fecha_desde = fecha_siguiente.strftime("%Y-%m-%d") #vuelve a transformar a str
+fecha_hasta = ultimo_dia_CAMM() #ultimo día informe subido por CAMMESA
 
 fecha_desde = fecha_desde+"T00:00:00.000-03:00" 
 fecha_hasta = fecha_hasta+"T23:59:00.000-03:00"
@@ -109,7 +109,7 @@ for fecha_actual, fecha_siguiente in iterar_entre_fechas(fecha_desde, fecha_hast
             if response.status_code == 200:
                 PPO=response.json()
                 doc_id = PPO[-1]['id']
-                print(doc_id)
+                print(dia_mdb)
             else:
                 print("La solicitud falló con el código de estado:", response.status_code)
     except requests.exceptions.RequestException as e:
