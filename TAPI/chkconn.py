@@ -1,14 +1,9 @@
-import os
 import pandas as pd
-import zipfile
 import pyodbc
-import requests
-import io
 from datetime import datetime, timedelta
-import sqlalchemy
+
 
 server = 'DARCCVWSQL19'
-#server = 'DESKTOP-37ESKFT\SQLEXPRESS'
 database = 'TAPI'
 tabla = 'DiarioTest'
 connection_string = f'DRIVER=ODBC Driver 17 for SQL Server;SERVER={server};DATABASE={database};Trusted_Connection=yes;'
