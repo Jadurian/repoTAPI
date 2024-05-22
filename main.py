@@ -224,3 +224,5 @@ if fecha_desde_obj < fecha_hasta_obj:
             print(f"El archivo {zip_name} no se encontró. Saltando al siguiente archivo...")
 else:
     print(f"Última fecha en BD:{fecha_desde_obj} es igual a la última fecha del informe de CAMMESA: {fecha_hasta_obj}\nNo se realiza el update")
+
+print("Finaliza el update")
