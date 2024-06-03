@@ -205,7 +205,7 @@ if fecha_desde_obj < fecha_hasta_obj:
                                 "GUEMTV12", "GUEMTV13", "LDLATG01", "LDLATG02", 
                                 "LDLATG03", "LDLATG04", "LDLATG05", "LDLATV01", 
                                 "LDLMDI01", "LREYHB", "NIH1HI", "NIH2HI", "NIH3HI", 
-                                "PAMEEO", "PEP3EO", "PILBDI01", "PILBDI02", 
+                                "PAMEEO", "PE32EO", "PEP3EO", "PILBDI01", "PILBDI02", 
                                 "PILBDI03", "PILBDI04", "PILBDI05", "PILBDI06", "PIQIDI01", "PPLEHI"]
             
             contratos_filtrados = ["C.T. LOMA DE LA LATA", "C.T.E.BARRAGAN TV-M", "CT LOMA II LA LATA-M", "GENELBA CC -MERCA", "PIEDRABUENA  R21-","CT PILAR BS AS M"]
