@@ -36,7 +36,7 @@ def  ultimo_dia_CAMM(): #Con este script se puede obtener la fecha del último d
 def ultimo_dia_bd(): #captura la fecha del último registro cargado en la BD
     server = 'DARCCVWSQL19'
     database = 'TAPI'
-    tabla = 'Valores_NO_Corregidos'
+    tabla = 'Valores_Gen_Diario_Automatico'
 
     connection_string = f'DRIVER=ODBC Driver 17 for SQL Server;SERVER={server};DATABASE={database};Trusted_Connection=yes;'
 
@@ -59,9 +59,8 @@ def ultimo_dia_bd(): #captura la fecha del último registro cargado en la BD
 server = 'DARCCVWSQL19'
 database = 'TAPI'
 
-tabla_valores = 'Valores_NO_Corregidos'
-tabla_contratos = 'Contratos_NO_Corregidos'
-tabla_novedades = 'Novedades_NO_Corregidos'
+tabla_valores = 'Valores_Gen_Diario_Automatico'
+tabla_contratos = 'Contratos_Diario_Automatico'
 
 # Fechas para seleccionar el día de la carga se debe iterar
 
@@ -175,10 +174,8 @@ if fecha_desde_obj < fecha_hasta_obj:
 
             #3
             #-------------------------------------------------------#
-            #-------------------------------------------------------#
             valores_generadores = pd.read_sql("SELECT * FROM VALORES_GENERADORES", conn)
             contrato_abastecimiento = pd.read_sql("SELECT * FROM CONTRATO_ABASTECIMIENTO", conn)
-            novedades = pd.read_sql("SELECT * FROM NOVEDADES", conn)
             #-------------------------------------------------------#
             conn.close()
             
@@ -195,8 +192,6 @@ if fecha_desde_obj < fecha_hasta_obj:
             valores_generadores.insert(0, 'FECHA', dia_mdb_formatted)
 
             contrato_abastecimiento.insert(0, 'FECHA', dia_mdb_formatted)
-
-            novedades.insert(0, 'FECHA', dia_mdb_formatted)
             #-------------------------------------------------------#
             quoted = urllib.parse.quote_plus(connection_string)
 
@@ -217,17 +212,13 @@ if fecha_desde_obj < fecha_hasta_obj:
 
             df_valores = valores_generadores[valores_generadores["GRUPO"].isin(valores_filtrados)]  
             
-            df_contratos = contrato_abastecimiento[contrato_abastecimiento["CONTRATO"].isin(contratos_filtrados)]
-
-            df_novedades = novedades[novedades["GRUPO"].isin(valores_filtrados)] 
+            df_contratos = contrato_abastecimiento[contrato_abastecimiento["CONTRATO"].isin(contratos_filtrados)] 
 
             engine = sqlalchemy.create_engine('mssql+pyodbc:///?odbc_connect={}'.format(quoted))
         
             df_valores.to_sql(f'{tabla_valores}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
 
             df_contratos.to_sql(f'{tabla_contratos}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
-
-            df_novedades.to_sql(f'{tabla_novedades}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
             
         except FileNotFoundError:
             print(f"El archivo {zip_name} no se encontró. Saltando al siguiente archivo...")
