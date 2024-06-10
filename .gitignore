@@ -2,6 +2,7 @@
 .zips/*
 .mdb/*
 !.mdb/
+!.zips/
 /docs
 /images
 /sql
