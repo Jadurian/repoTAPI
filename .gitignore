@@ -1,5 +1,7 @@
 /Datos
-.zips
+.zips/*
+.mdb/*
+!.mdb/
 /docs
 /images
 /sql
