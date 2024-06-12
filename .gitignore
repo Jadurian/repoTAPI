@@ -1,8 +1,7 @@
 /Datos
-.zips
-/sql
+.zips/*
+.mdb/*
 __pycache__
-/.DTE
 
 
 
