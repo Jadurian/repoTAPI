@@ -91,8 +91,8 @@ method_id = "findDocumentosByNemoRango?" #ID
 method_zip = "findAllAttachmentZipByNemoId?"
 
 
-zip_path = r"C:\Users\jadurian\Documents\Tapi\.zips"
-mdb_path = r"C:\Users\jadurian\Documents\Tapi\.zips\.mdb"
+zip_path = r".zips"
+mdb_path = r".zips\.mdb"
 
 connection_string = f'DRIVER=ODBC Driver 17 for SQL Server;SERVER={server};DATABASE={database};Trusted_Connection=yes;'
 
@@ -232,6 +232,6 @@ if fecha_desde_obj < fecha_hasta_obj:
         except FileNotFoundError:
             print(f"El archivo {zip_name} no se encontró. Saltando al siguiente archivo...")
 else:
-    print(f"Última fecha en BD:{fecha_desde_obj} es igual a la última fecha del informe de CAMMESA: {fecha_hasta_obj}\nNo se realiza el update")
+    print(f"Última fecha en BD: {fecha_desde_obj} es igual a la última fecha del informe de CAMMESA: {fecha_hasta_obj}\nNo se realiza el update")
 
 print("Finaliza el update")
