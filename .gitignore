@@ -1,10 +1,7 @@
-/Datos
-/docs
-/images
-/sql
+.zips/*
+.mdb/*
 __pycache__
-/.DTE
-/.venv
+>>>>>>> master
 
 
 

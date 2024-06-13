@@ -36,8 +36,7 @@ def  ultimo_dia_CAMM(): #Con este script se puede obtener la fecha del último d
 def ultimo_dia_bd(): #captura la fecha del último registro cargado en la BD
     server = 'DARCCVWSQL19'
     database = 'TAPI'
-
-    tabla = 'Valores_NO_Corregidos'
+    tabla = 'Valores_Gen_Diario_Automatico'
 
     connection_string = f'DRIVER=ODBC Driver 17 for SQL Server;SERVER={server};DATABASE={database};Trusted_Connection=yes;'
 
@@ -60,10 +59,8 @@ def ultimo_dia_bd(): #captura la fecha del último registro cargado en la BD
 server = 'DARCCVWSQL19'
 database = 'TAPI'
 
-tabla_valores = 'Valores_NO_Corregidos'
-tabla_contratos = 'Contratos_NO_Corregidos'
-tabla_novedades = 'Novedades_NO_Corregidos'
-
+tabla_valores = 'Valores_Gen_Diario_Automatico'
+tabla_contratos = 'Contratos_Diario_Automatico'
 
 # Fechas para seleccionar el día de la carga se debe iterar
 
@@ -92,9 +89,9 @@ URL = f"https://api.cammesa.com/pub-svc/public/"
 method_id = "findDocumentosByNemoRango?" #ID
 method_zip = "findAllAttachmentZipByNemoId?"
 
-zip_path = r".zips"
-mdb_path = r".zips\.mdb"
 
+zip_path = r"C:\Users\jadurian\Documents\Tapi\.zips"
+mdb_path = r"C:\Users\jadurian\Documents\Tapi\.zips\.mdb"
 
 connection_string = f'DRIVER=ODBC Driver 17 for SQL Server;SERVER={server};DATABASE={database};Trusted_Connection=yes;'
 
@@ -179,8 +176,6 @@ if fecha_desde_obj < fecha_hasta_obj:
             #-------------------------------------------------------#
             valores_generadores = pd.read_sql("SELECT * FROM VALORES_GENERADORES", conn)
             contrato_abastecimiento = pd.read_sql("SELECT * FROM CONTRATO_ABASTECIMIENTO", conn)
-            novedades = pd.read_sql("SELECT * FROM NOVEDADES", conn)
-
             #-------------------------------------------------------#
             conn.close()
             
@@ -197,9 +192,6 @@ if fecha_desde_obj < fecha_hasta_obj:
             valores_generadores.insert(0, 'FECHA', dia_mdb_formatted)
 
             contrato_abastecimiento.insert(0, 'FECHA', dia_mdb_formatted)
-
-            novedades.insert(0, 'FECHA', dia_mdb_formatted)
-
             #-------------------------------------------------------#
             quoted = urllib.parse.quote_plus(connection_string)
 
@@ -213,29 +205,24 @@ if fecha_desde_obj < fecha_hasta_obj:
                                 "GUEMTV12", "GUEMTV13", "LDLATG01", "LDLATG02", 
                                 "LDLATG03", "LDLATG04", "LDLATG05", "LDLATV01", 
                                 "LDLMDI01", "LREYHB", "NIH1HI", "NIH2HI", "NIH3HI", 
-                                "PAMEEO", "PE32EO", "PEP3EO", "PILBDI01", "PILBDI02", 
+                                "PAMEEO", "PEP3EO", "PILBDI01", "PILBDI02", 
                                 "PILBDI03", "PILBDI04", "PILBDI05", "PILBDI06", "PIQIDI01", "PPLEHI"]
             
             contratos_filtrados = ["C.T. LOMA DE LA LATA", "C.T.E.BARRAGAN TV-M", "CT LOMA II LA LATA-M", "GENELBA CC -MERCA", "PIEDRABUENA  R21-","CT PILAR BS AS M"]
 
             df_valores = valores_generadores[valores_generadores["GRUPO"].isin(valores_filtrados)]  
-
+            
             df_contratos = contrato_abastecimiento[contrato_abastecimiento["CONTRATO"].isin(contratos_filtrados)] 
-
-            df_novedades = novedades[novedades["GRUPO"].isin(valores_filtrados)] 
 
             engine = sqlalchemy.create_engine('mssql+pyodbc:///?odbc_connect={}'.format(quoted))
         
             df_valores.to_sql(f'{tabla_valores}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
 
             df_contratos.to_sql(f'{tabla_contratos}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
-
-            df_novedades.to_sql(f'{tabla_novedades}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
             
         except FileNotFoundError:
             print(f"El archivo {zip_name} no se encontró. Saltando al siguiente archivo...")
 else:
-
-    print(f"Última fecha en BD: {fecha_desde_obj} es igual a la última fecha del informe de CAMMESA: {fecha_hasta_obj}\nNo se realiza el update")
+    print(f"Última fecha en BD:{fecha_desde_obj} es igual a la última fecha del informe de CAMMESA: {fecha_hasta_obj}\nNo se realiza el update")
 
 print("Finaliza el update")
