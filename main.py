@@ -9,6 +9,10 @@ import io
 from datetime import datetime, timedelta
 import sqlalchemy
 import urllib
+import warnings
+
+warnings.filterwarnings('ignore')
+
 
 #funciones
 
@@ -33,7 +37,7 @@ def  ultimo_dia_CAMM(): #Con este script se puede obtener la fecha del último d
 
     return fecha
 
-def ultimo_dia_bd(): #captura la fecha del último registro cargado en la BD
+def ultimo_dia_valores(): #captura la fecha del último registro cargado en la BD
     server = 'DARCCVWSQL19'
     database = 'TAPI'
 
@@ -67,11 +71,11 @@ tabla_novedades = 'Novedades_NO_Corregidos'
 
 # Fechas para seleccionar el día de la carga se debe iterar
 
-fecha_desde_obj = datetime.fromisoformat(ultimo_dia_bd())
+fecha_desde_obj = datetime.fromisoformat(ultimo_dia_valores())
 
 fecha_hasta_obj = datetime.fromisoformat(ultimo_dia_CAMM())
 
-fecha_desde_bd = ultimo_dia_bd() #OJO DE QUE TABLA TOMA EL ULTIMO DIA
+fecha_desde_bd = ultimo_dia_valores() #OJO DE QUE TABLA TOMA EL ULTIMO DIA
 
 fecha_datetime = datetime.strptime(fecha_desde_bd, "%Y-%m-%d")
 
