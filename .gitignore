@@ -2,6 +2,7 @@
 .mdb/*
 __pycache__
 >>>>>>> master
+.venv
 
 
 
