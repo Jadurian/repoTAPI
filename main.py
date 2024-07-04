@@ -1,3 +1,7 @@
+#este script cumple la función de insertar datos de la API de cammesa a una BD SQL SERVER diariamente y cada vez que hayan nuevos valores, se los inserta
+#se procesan las tablas VALORES_GENERADORES; CONTRATO_ABASTECIMIENTO; NOVEDADES del NEMO: PARTE_POST_OPERATIVO
+#se filtran los contratos y grupos de esas tablas y se insertan en la BD
+
 #libs
 
 import os
