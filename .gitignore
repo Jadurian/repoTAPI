@@ -1,8 +1,7 @@
 .zips/*
 .mdb/*
 __pycache__
->>>>>>> master
 .venv
-
+docs/
 
 
