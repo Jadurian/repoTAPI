@@ -121,7 +121,7 @@ if fecha_desde_obj < fecha_hasta_obj:
         url_doc_id = f"{URL}{method_id}fechadesde={fecha_actual.isoformat()}&fechahasta={fecha_siguiente.isoformat()}&nemo={NEMO}"
         
         #obtener el doc_id del dia actual (corregido)
-        dia_mdb = fecha_actual.strftime("%d-%m-%Y")
+        dia_mdb = fecha_actual.strftime("%d-%m-%Y") #se captura el día del mdb
         try:
             with requests.get(url_doc_id) as response:
                 if response.status_code == 200:
@@ -165,7 +165,6 @@ if fecha_desde_obj < fecha_hasta_obj:
 
         #display(path_zip_dia)
 
-        
         try:
             # Extrae el archivo MDB de cada archivo ZIP diario
             with zipfile.ZipFile(path_zip_dia, 'r') as zip_ref:
