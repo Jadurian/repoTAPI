@@ -67,6 +67,10 @@ database = 'TAPI'
 tabla_valores = 'Valores_NO_Corregidos'
 tabla_contratos = 'Contratos_NO_Corregidos'
 tabla_novedades = 'Novedades_NO_Corregidos'
+tabla_combustibles_quemados_det_total = 'COMBUSTIBLES_QUEMADOS_DET_TOTAL_NO_Corregidos'
+tabla_combustible_porcentaje_det = 'COMBUSTIBLE_PORCENTAJE_DET_NO_Corregidos'
+tabla_com_quemados_scom = 'COM_QUEMADOS_SCOM_NO_Corregidos'
+tabla_restricciones_renovables = 'RESTRICCIONES_RENOVABLES_Corregidos'
 
 
 # Fechas para seleccionar el día de la carga se debe iterar
@@ -183,6 +187,10 @@ if fecha_desde_obj < fecha_hasta_obj:
             valores_generadores = pd.read_sql("SELECT * FROM VALORES_GENERADORES", conn)
             contrato_abastecimiento = pd.read_sql("SELECT * FROM CONTRATO_ABASTECIMIENTO", conn)
             novedades = pd.read_sql("SELECT * FROM NOVEDADES", conn)
+            # comb_quemados_scom = pd.read_sql("SELECT * FROM COMB_QUEMADOS_SCOM", conn)
+            # combustible_porcentaje_det = pd.read_sql("SELECT * FROM COMBUSTIBLE_PORCENTAJE_DET", conn)
+            # combustibles_quemados_det_total = pd.read_sql("SELECT * FROM  COMBUSTIBLES_QUEMADOS_DET_TOTAL", conn)
+            # restricciones_renovables = pd.read_sql("SELECT * FROM RESTRICCIONES_RENOVABLES", conn)
 
             #-------------------------------------------------------#
             conn.close()
@@ -198,10 +206,12 @@ if fecha_desde_obj < fecha_hasta_obj:
             #4
             #-------------------------------------------------------#
             valores_generadores.insert(0, 'FECHA', dia_mdb_formatted)
-
             contrato_abastecimiento.insert(0, 'FECHA', dia_mdb_formatted)
-
             novedades.insert(0, 'FECHA', dia_mdb_formatted)
+            # comb_quemados_scom.insert(0, 'FECHA', dia_mdb_formatted)
+            # combustible_porcentaje_det.insert(0, 'FECHA', dia_mdb_formatted)
+            # combustibles_quemados_det_total.insert(0, 'FECHA', dia_mdb_formatted)        
+            # restricciones_renovables.insert(0, 'FECHA', dia_mdb_formatted)
 
             #-------------------------------------------------------#
             quoted = urllib.parse.quote_plus(connection_string)
@@ -222,18 +232,22 @@ if fecha_desde_obj < fecha_hasta_obj:
             contratos_filtrados = ["C.T. LOMA DE LA LATA", "C.T.E.BARRAGAN TV-M", "CT LOMA II LA LATA-M", "GENELBA CC -MERCA", "PIEDRABUENA  R21-","CT PILAR BS AS M"]
 
             df_valores = valores_generadores[valores_generadores["GRUPO"].isin(valores_filtrados)]  
-
             df_contratos = contrato_abastecimiento[contrato_abastecimiento["CONTRATO"].isin(contratos_filtrados)] 
-
             df_novedades = novedades[novedades["GRUPO"].isin(valores_filtrados)] 
+            # df_comb_quemados_scom = comb_quemados_scom[comb_quemados_scom["GRUPO"].isin(valores_filtrados)]
+            # df_combustible_porcentaje_det = combustible_porcentaje_det[combustible_porcentaje_det["GRUPO"].isin(valores_filtrados)]
+            # df_combustibles_quemados_det_total = combustibles_quemados_det_total[combustibles_quemados_det_total["GRUPO"].isin(valores_filtrados)]
+            # df_restricciones_renovables = restricciones_renovables[restricciones_renovables["GRUPO"].isin(valores_filtrados)]
 
             engine = sqlalchemy.create_engine('mssql+pyodbc:///?odbc_connect={}'.format(quoted))
         
             df_valores.to_sql(f'{tabla_valores}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
-
             df_contratos.to_sql(f'{tabla_contratos}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
-
             df_novedades.to_sql(f'{tabla_novedades}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
+            # df_comb_quemados_scom.to_sql(f'{tabla_com_quemados_scom}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
+            # df_combustible_porcentaje_det.to_sql(f'{tabla_combustible_porcentaje_det}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
+            # df_combustibles_quemados_det_total.to_sql(f'{tabla_combustibles_quemados_det_total}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
+            # df_restricciones_renovables.to_sql(f'{tabla_restricciones_renovables}', schema='dbo', con=engine, if_exists='append', chunksize=20000)
             
         except FileNotFoundError:
             print(f"El archivo {zip_name} no se encontró. Saltando al siguiente archivo...")
