@@ -219,7 +219,7 @@ if fecha_desde_obj < fecha_hasta_obj:
             #Por limitaciones de tamaño de excel filtramos solo las máquinas Pampa
             valores_filtrados = ["ADTOHI", "AR21EO", "BAHIEO", "BBLATV29", "BBLATV30",
                                 "BBLMDI01", "BBLMDI02", "BBLMDI03", "BBLMDI04", 
-                                "BBLMDI05", "BBLMDI06", "CERITV01", 
+                                "BBLMDI05", "BBLMDI06", "CERITV01", "PEP6EO",
                                 "EBARTG01", "EBARTG02", "EBARTV01", "ETIGHI", 
                                 "GEBATG01", "GEBATG02", "GEBATG03", "GEBATG04", 
                                 "GEBATV01", "GEBATV02", "GUEMTG01", "GUEMTV11", 
