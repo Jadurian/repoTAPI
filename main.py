@@ -70,7 +70,7 @@ tabla_novedades = 'Novedades_NO_Corregidos'
 tabla_combustibles_quemados_det_total = 'COMBUSTIBLES_QUEMADOS_DET_TOTAL_NO_Corregidos'
 tabla_combustible_porcentaje_det = 'COMBUSTIBLE_PORCENTAJE_DET_NO_Corregidos'
 tabla_com_quemados_scom = 'COM_QUEMADOS_SCOM_NO_Corregidos'
-tabla_restricciones_renovables = 'RESTRICCIONES_RENOVABLES_Corregidos'
+tabla_restricciones_renovables = 'RESTRICCIONES_RENOVABLES_NO_Corregidos'
 
 
 # Fechas para seleccionar el día de la carga se debe iterar
