@@ -9,7 +9,9 @@ COPY requirements.txt requirements.txt
  
 # Instalamos las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
- 
+RUN apt-get update && \ apt-get install -y unixodbc unixodbc-dev
+
+
 # Copiamos el código fuente de tu aplicación
 COPY main.py main.py
  
